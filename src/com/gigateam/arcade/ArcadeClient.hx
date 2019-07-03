@@ -1,14 +1,14 @@
 package com.gigateam.arcade;
 import com.gigateam.netagram.Message;
 import com.gigateam.netagram.MessageFactory;
-import com.gigateam.netagram.Switchless;
+import com.gigateam.netagram.Netagram;
 import sys.net.Host;
 
 /**
  * ...
  * @author 
  */
-class ArcadeClient extends Switchless
+class ArcadeClient extends Netagram
 {
 	public var lerp:Float = 0.1;
 	public var onUpdate:Void->Void;
