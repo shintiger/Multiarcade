@@ -1,0 +1,14 @@
+{
+  "name": "multiarcade",
+  "url" : "https://github.com/jasononeil/useless/",
+  "license": "MIT",
+  "tags": ["network", "udp", "game", "multiplayer", "server", "client"],
+  "description": "This library is useless in the same way on every platform.",
+  "version": "0.0.1",
+  "classPath": "src/",
+  "releasenote": "Initial release, everything is working correctly.",
+  "contributors": ["Tiger"],
+  "dependencies": {
+    "netagram": ""
+  }
+}
