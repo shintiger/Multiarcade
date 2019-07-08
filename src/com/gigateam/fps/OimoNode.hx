@@ -1,7 +1,7 @@
 package com.gigateam.fps;
 import com.gigateam.arcade.ArcadeNode;
-import com.gigateam.arcade.SpawnMessage;
-import com.gigateam.arcade.StateMessage;
+import com.gigateam.arcade.message.SpawnMessage;
+import com.gigateam.arcade.message.StateMessage;
 import oimo.math.Vec3;
 import oimo.physics.dynamics.RigidBody;
 

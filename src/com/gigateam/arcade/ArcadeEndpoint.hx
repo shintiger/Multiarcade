@@ -11,6 +11,7 @@ import sys.net.UdpSocket;
  */
 class ArcadeEndpoint extends NetagramEndpoint
 {
+	public var nodeGroup:NodeGroup = new NodeGroup();
 	private var messageBuffer:Array<Message> = [];
 	public function new(sock:UdpSocket, addr:Address) 
 	{

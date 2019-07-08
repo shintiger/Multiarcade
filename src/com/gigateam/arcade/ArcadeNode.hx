@@ -1,4 +1,6 @@
 package com.gigateam.arcade;
+import com.gigateam.arcade.message.SpawnMessage;
+import com.gigateam.arcade.message.StateMessage;
 
 /**
  * ...
@@ -11,6 +13,7 @@ class ArcadeNode
 	public var collider:Dynamic;
 	public var serverOnly:Bool = false;
 	public var netId:Int = -1;
+	public var visible:Bool = false;
 	private var parent:NodeGroup;
 	public function new(collider:Dynamic) 
 	{

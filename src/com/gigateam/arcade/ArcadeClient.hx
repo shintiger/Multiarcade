@@ -1,4 +1,8 @@
 package com.gigateam.arcade;
+import com.gigateam.arcade.control.InputResample;
+import com.gigateam.arcade.message.InitializeMessage;
+import com.gigateam.arcade.message.SnapshotMessage;
+import com.gigateam.arcade.message.SpawnMessage;
 import com.gigateam.netagram.Message;
 import com.gigateam.netagram.MessageFactory;
 import com.gigateam.netagram.Netagram;
@@ -91,4 +95,7 @@ class ArcadeClient extends Netagram
 		//former.accessLock.release();
 	}
 	
+	public function commit(input:InputResample):Void{
+		sendImportant(input.toMessage());
+	}
 }

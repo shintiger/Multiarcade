@@ -1,4 +1,5 @@
-package com.gigateam.arcade;
+package com.gigateam.arcade.message;
+import com.gigateam.arcade.message.SpawnMessage;
 import com.gigateam.netagram.Message;
 import com.gigateam.netagram.MessageUtil;
 import com.gigateam.util.BytesStream;

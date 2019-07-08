@@ -1,4 +1,7 @@
 package com.gigateam.arcade;
+import com.gigateam.arcade.message.SnapshotMessage;
+import com.gigateam.arcade.message.SpawnMessage;
+import com.gigateam.arcade.message.StateMessage;
 import hx.concurrent.lock.RLock;
 
 /**
@@ -60,10 +63,6 @@ class ArcadeFormer extends NodeGroup implements IDecoder
 		removed = [];
 	}
 	
-	public function onAdd(node:ArcadeNode):Void{}
-	
-	public function onRemove(node:ArcadeNode):Void{}
-	
 	public function readSnapshot(snapshot:SnapshotMessage):Void{
 		var localTime:Float = Sys.time();
 		var debugStr:String = "";
@@ -83,7 +82,6 @@ class ArcadeFormer extends NodeGroup implements IDecoder
 		if (snapshot.sentTime < remoteLastTime){
 			trace("discarding");
 			//Discard old snapshot
-			//trace(remoteLastTime, snapshot.sentTime);
 			return;
 		}else{
 			var localDelta:Float = localTime-localStartTime;
@@ -105,17 +103,7 @@ class ArcadeFormer extends NodeGroup implements IDecoder
 		if (snapshot.time == 65536 || snapshot.time==0){
 			trace(debugStr);
 		}
-		//var last:SnapshotMessage = snapshotTimeline.last();
 		if (snapshotTimeline.push(snapshot)){
-			/*
-			last.each(function(state:StateMessage):Void{
-				if (snapshot.getStateByNetId(state.entityId) == null){
-					var node:ArcadeNode = getNodeByNetId(state.entityId);
-					node.removeTime = localTime+nodeAlive;
-					pendingRemove.push(node);
-				}
-			});
-			*/
 			for (node in children){
 				if (snapshot.getStateByNetId(node.netId) == null && node.removeTime<0){
 					node.removeTime = localTime+nodeAlive;
@@ -144,6 +132,8 @@ class ArcadeFormer extends NodeGroup implements IDecoder
 				var node:ArcadeNode = getNodeByNetId(afterState.entityId);
 				if (beforeState == null || node==null){
 					return;
+				}else if (beforeState != null && node == null){
+					onDisappear(getNodeByNetId(beforeState.entityId));
 				}
 				node.lerp(beforeState, afterState, percentage);
 			});
@@ -168,10 +158,18 @@ class ArcadeFormer extends NodeGroup implements IDecoder
 		lock.acquire();
 		for (node in children){
 			//handler.onItemUpdate(node);
+			if (!node.visible){
+				node.visible = true;
+				onShow(node);
+			}
 			onItemUpdate(node);
 		}
 		lock.release();
 	}
 	
+	public function onAdd(node:ArcadeNode):Void{}
+	public function onRemove(node:ArcadeNode):Void{}
 	public function onItemUpdate(node:ArcadeNode):Void{}
+	public function onShow(node:ArcadeNode):Void{}
+	public function onDisappear(node:ArcadeNode):Void{}
 }

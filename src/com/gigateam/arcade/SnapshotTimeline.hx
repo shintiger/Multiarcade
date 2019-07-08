@@ -1,4 +1,5 @@
 package com.gigateam.arcade;
+import com.gigateam.arcade.message.SnapshotMessage;
 
 /**
  * ...

@@ -1,4 +1,8 @@
 package com.gigateam.arcade;
+import com.gigateam.arcade.message.InitializeMessage;
+import com.gigateam.arcade.message.SnapshotMessage;
+import com.gigateam.arcade.message.SpawnMessage;
+import com.gigateam.arcade.message.StateMessage;
 import com.gigateam.netagram.IMessageSender;
 import com.gigateam.netagram.Message;
 import com.gigateam.netagram.RollingIndex;
