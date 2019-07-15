@@ -13,7 +13,7 @@ class OimoSimulator extends World implements ISimulator
 	public function new() 
 	{
 		super(60);
-		gravity.y *= 0.1;
+		gravity.y *= 0.01;
 	}
 	public function addEntity(entity:Dynamic):Void{ 
 		if (!Std.is(entity, RigidBody)){
